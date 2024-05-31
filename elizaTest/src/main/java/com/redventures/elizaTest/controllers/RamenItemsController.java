@@ -19,7 +19,8 @@ public class RamenItemsController {
     private RamenItemsService service;
 
     @GetMapping("/broths")
-    public ResponseEntity<List<Broth>> getAllBroths() {
+    public ResponseEntity<List<Broth>> getAllBroths(
+            @RequestHeader(value = "x-api-key", required = true) String authorizationHeader) {
         try {
             List<Broth> products = service.getAllBroths();
             return ResponseEntity.status(200).body(products);
@@ -29,28 +30,10 @@ public class RamenItemsController {
     }
 
     @GetMapping("/proteins")
-    public ResponseEntity<List<Protein>> getAllProteins() {
+    public ResponseEntity<List<Protein>> getAllProteins(
+            @RequestHeader(value = "x-api-key", required = true) String authorizationHeader) {
         List<Protein> products = service.getAllProteins();
         return ResponseEntity.status(200).body(products);
     }
-
-//    @PostMapping("/postBroth")
-//    public ResponseEntity<Broth> postBroth(@RequestBody Broth broth) {
-//        try {
-//             return ResponseEntity.status(201).body(service.postNewBroth(broth));
-//        } catch (Error e) {
-//            return ResponseEntity.status(402).build();
-//        }
-//    }
-//
-//    @PostMapping("/postProtein")
-//    public ResponseEntity<Protein> postBroth(@RequestBody Protein protein) {
-//        try {
-//            return ResponseEntity.status(201).body(service.postNewProtein(protein));
-//        } catch (Error e) {
-//            return ResponseEntity.status(402).build();
-//        }
-//    }
-
 
 }
