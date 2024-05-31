@@ -22,7 +22,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProteinRepository proteinRepo;
 
+    @Override
     public OrderResponseDTO createOrder(OrderRequestDTO orderRequest) {
+
         UUID brothId = UUID.fromString(orderRequest.getBrothId());
         UUID proteinId = UUID.fromString(orderRequest.getProteinId());
 
