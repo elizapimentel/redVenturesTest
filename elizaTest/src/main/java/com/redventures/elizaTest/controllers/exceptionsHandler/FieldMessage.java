@@ -1,4 +1,4 @@
-package com.redventures.elizaTest.exceptionsHandler;
+package com.redventures.elizaTest.controllers.exceptionsHandler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
