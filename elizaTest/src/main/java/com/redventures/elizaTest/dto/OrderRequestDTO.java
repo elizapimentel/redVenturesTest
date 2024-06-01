@@ -13,8 +13,8 @@ import java.io.Serializable;
 public class OrderRequestDTO implements Serializable {
 
     @NotNull
-    private String brothId;
+    private Long brothId;
     @NotNull
-    private String proteinId;
+    private Long proteinId;
 
 }

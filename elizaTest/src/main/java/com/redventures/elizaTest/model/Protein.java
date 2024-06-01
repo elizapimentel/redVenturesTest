@@ -5,10 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -21,10 +19,13 @@ public class Protein implements Serializable {
     @Column(name = "id")
     @JsonProperty("id")
     @Id
-    private UUID id;
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
     private String description;
     private Number price;
+
+    public Protein(Long protainId, String proteinName, String image) {
+    }
 }

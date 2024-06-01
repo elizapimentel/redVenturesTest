@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Table(name = "broth")
 @Data
@@ -20,11 +19,13 @@ public class Broth implements Serializable {
     @Column(name = "id")
     @JsonProperty("id")
     @Id
-    private UUID id;
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
     private String description;
     private Number price;
 
+    public Broth(Long id, String brothName, String image) {
+    }
 }
