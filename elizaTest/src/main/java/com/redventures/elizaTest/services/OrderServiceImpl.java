@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -22,20 +22,25 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProteinRepository proteinRepo;
 
+    private static final int MAX_ID = 99999;
+    private static long generateRandomId() {
+        return ThreadLocalRandom.current().nextLong(1, MAX_ID + 1);
+    }
+
     @Override
     public OrderResponseDTO createOrder(OrderRequestDTO orderRequest) {
 
-        UUID brothId = UUID.fromString(orderRequest.getBrothId());
-        UUID proteinId = UUID.fromString(orderRequest.getProteinId());
-
-        Broth broth = brothRepo.findById(brothId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid broth ID"));
-        Protein protein = proteinRepo.findById(proteinId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid protein ID"));
+        Broth broth = brothRepo.findById(orderRequest.getBrothId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid broth"));
+        Protein protein = proteinRepo.findById(orderRequest.getProteinId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid protein"));
 
         String description = broth.getName() + " and " + protein.getName() + " Ramen";
         String image = "https://tech.redventures.com.br/icons/ramen/" + protein.getImageActive();
 
-        return new OrderResponseDTO(UUID.randomUUID(), description, image);
+        long newOrderId = generateRandomId();
+        String orderId = String.format("%05d", newOrderId);
+
+        return new OrderResponseDTO(orderId, description, image);
     }
 }
