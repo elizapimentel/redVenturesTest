@@ -27,10 +27,10 @@ import static org.mockito.Mockito.when;
 public class OrderServiceImplTest {
 
     public static final Long BROTH_ID                   = 1L;
-    public static final Long PROTAIN_ID                 = 2L;
+    public static final Long PROTEIN_ID                 = 2L;
     public static final String BROTH_NAME               = "Salt";
     public static final String PROTEIN_NAME             = "Pork";
-    public static final String IMAGE                    = "https://tech.redventures.com.br/icons/ramen/https://tech.redventures.com.br/icons/pork/active.svg";
+    public static final String IMAGE_1                  = "https://tech.redventures.com.br/icons/ramen/https://tech.redventures.com.br/icons/pork/active.svg";
 
 
     @InjectMocks
@@ -49,25 +49,22 @@ public class OrderServiceImplTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         generateRamen();
-        reqDTO.setBrothId(BROTH_ID);
-        reqDTO.setProteinId(PROTAIN_ID);
     }
 
-
     @Test
-    void mustCreateNewOrderOk () {
+    void mustCreateNewOrderOk() {
 
         broth.setId(BROTH_ID);
         broth.setName(BROTH_NAME);
 
-        protein.setId(PROTAIN_ID);
+        protein.setId(PROTEIN_ID);
         protein.setName(PROTEIN_NAME);
 
         when(brothRepo.findById(BROTH_ID)).thenReturn(Optional.of(broth));
-        when(proteinRepo.findById(PROTAIN_ID)).thenReturn(Optional.of(protein));
+        when(proteinRepo.findById(PROTEIN_ID)).thenReturn(Optional.of(protein));
 
         String description = BROTH_NAME + " and " + PROTEIN_NAME + " Ramen";
-        String image = "https://tech.redventures.com.br/icons/ramen/" + IMAGE;
+        String image = "https://tech.redventures.com.br/icons/ramen/" + IMAGE_1;
 
         OrderResponseDTO res =service.createOrder(reqDTO);
 
@@ -83,6 +80,8 @@ public class OrderServiceImplTest {
         reqDTO = new OrderRequestDTO();
         broth = new Broth();
         protein = new Protein();
+        reqDTO.setBrothId(BROTH_ID);
+        reqDTO.setProteinId(PROTEIN_ID);
     }
 
 }
