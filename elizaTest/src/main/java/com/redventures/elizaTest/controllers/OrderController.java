@@ -23,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("")
+@CrossOrigin("https://tech.redventures.com.br, http://localhost:8090, https://api.tech.redventures.com.br, https://d941-179-251-190-191.ngrok-free.app")
 public class OrderController {
 
     @Qualifier("orderServiceImpl")
