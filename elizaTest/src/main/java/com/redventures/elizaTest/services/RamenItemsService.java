@@ -10,8 +10,8 @@ import java.util.List;
 public interface RamenItemsService {
     List<Broth> getAllBroths();
     List<Protein> getAllProteins();
-    Broth postNewBroth(Broth broth);
-    Protein postNewProtein(Protein protein);
+//    Broth postNewBroth(Broth broth);
+//    Protein postNewProtein(Protein protein);
 
 
 }

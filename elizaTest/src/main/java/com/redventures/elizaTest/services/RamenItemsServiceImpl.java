@@ -28,17 +28,17 @@ public class RamenItemsServiceImpl implements RamenItemsService {
         return proteinRepo.findAll();
     }
 
-    @Transactional
-    @Override
-    public Broth postNewBroth(Broth broth) {
-        return brothRepo.save(broth);
-    }
-
-    @Transactional
-    @Override
-    public Protein postNewProtein(Protein protein) {
-        return proteinRepo.save(protein);
-    }
+//    @Transactional
+//    @Override
+//    public Broth postNewBroth(Broth broth) {
+//        return brothRepo.save(broth);
+//    }
+//
+//    @Transactional
+//    @Override
+//    public Protein postNewProtein(Protein protein) {
+//        return proteinRepo.save(protein);
+//    }
 
 
 }
